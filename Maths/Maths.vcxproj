@@ -76,10 +76,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Vector2.cpp" />
+    <ClCompile Include="src\Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Precision.h" />
     <ClInclude Include="src\Vector2.h" />
+    <ClInclude Include="src\Vector3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

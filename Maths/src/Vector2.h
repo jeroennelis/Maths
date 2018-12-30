@@ -17,25 +17,28 @@ namespace Maths {
 	public:
 		
 		Vector2();										// default constructor	
-		Vector2(const real a);							// explicit constructor
-		Vector2(const real x, const real y);			// explicit constructor
+		explicit Vector2(const real a);							// explicit constructor
+		explicit Vector2(const real x, const real y);			// explicit constructor
 		Vector2(const Vector2& v);						// copy constructor
 		~Vector2();										// destructor
 
 		Vector2&										// assignment operator
 			operator= (const Vector2& rhs);
 
+		Vector2&										// clear 
+			Clear(void);
+
 		Vector2											// negate
 			operator- (void) const;
 
-		Vector2&
+		Vector2&										// negate
 			Negate(void);
 
-		real											// length
-			Length(void) const;
+		real											// magnitude
+			Magnitude(void) const;
 
 		real											// square of the length
-			LenghtSquared(void) const;
+			SquareMagnitude(void) const;
 
 		Vector2											// multiplication by a real
 			operator* (const real a) const;
@@ -46,7 +49,7 @@ namespace Maths {
 		Vector2											// division by a real
 			operator/ (const real a) const;
 
-		Vector2&											// compound division by a real
+		Vector2&										// compound division by a real
 			operator/= (const real a);
 
 		Vector2											// addition 
@@ -70,13 +73,21 @@ namespace Maths {
 		Vector2&										// convert vector to a unit vector
 			Normalize(void);
 
+		Vector2&										//add scaled vector
+			AddScaledVector(const Vector2& v, real s);
+
+		Vector2&										// component product
+			ComponentProductUpdate(const Vector2& rhs);
+
+		Vector2											// component product without update
+			ComponentProduct(const Vector2& rhs) const;
 	};
 
 	// inlined member functions
 
 	// --------------------------------------------- operator-
 	// return negated vector
-
+	
 	inline Vector2
 		Vector2::operator- (void) const
 	{
@@ -88,7 +99,7 @@ namespace Maths {
 	// the square of the length
 
 	inline real 
-		Vector2::LenghtSquared(void) const
+		Vector2::SquareMagnitude(void) const
 	{
 		return(x * x + y * y);
 	}
@@ -148,6 +159,14 @@ namespace Maths {
 		return (x * v.x + y * v.y);
 	}
 
+
+	// ---------------------------------------------  component product without update
+
+	inline Vector2										
+		Vector2::ComponentProduct(const Vector2& rhs) const
+	{
+		return Vector2(x * rhs.x, y * rhs.y);
+	}
 
 
 	// inlined non-member function
